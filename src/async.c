@@ -112,7 +112,7 @@ int snd_async_add_handler(snd_async_handler_t **handler, int fd,
 		struct sigaction act;
 		memset(&act, 0, sizeof(act));
 		act.sa_flags = SA_RESTART | SA_SIGINFO;
-#ifdef __mips__
+#if defined __mips__ || defined __powerpc__
 	        act.sa_handler = (__sighandler_t)snd_async_handler;
 #else
 		act.sa_sigaction = snd_async_handler;
